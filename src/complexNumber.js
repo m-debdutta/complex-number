@@ -1,20 +1,19 @@
-const complexNumber = function() {
-
-  const getRealPart = function(number) {
-    return number.real; 
+const complexNumber = function(numbers) {
+  const getRealPart = function() {
+    return numbers.real; 
   }
 
-  const getImaginaryPart = function(number) {
-    return number.imaginary; 
+  const getImaginaryPart = function() {
+    return numbers.imaginary; 
   }
 
-  const getSum = function(numbers) {
+  const getSum = function() {
     const real = numbers[0].real + numbers[1].real; 
     const imaginary = numbers[0].imaginary + numbers[1].imaginary; 
     return {real, imaginary}
   }
 
-  const getProduct = function(numbers) {
+  const getProduct = function() {
     const real1 = numbers[0].real; 
     const real2 = numbers[1].real; 
     const imaginary1 = numbers[0].imaginary; 
