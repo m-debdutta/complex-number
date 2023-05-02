@@ -1,16 +1,22 @@
-const complexNumber = function(numbers) {
+const complexNumber = function(number) {
   const getRealPart = function() {
-    return numbers.real; 
+    return number.real; 
   }
 
   const getImaginaryPart = function() {
-    return numbers.imaginary; 
+    return number.imaginary; 
   }
 
+  return {getRealPart, getImaginaryPart}; 
+}
+
+const complexNumberOperator = function(numbers) {
   const getSum = function() {
-    const real = numbers[0].real + numbers[1].real; 
-    const imaginary = numbers[0].imaginary + numbers[1].imaginary; 
-    return {real, imaginary}
+    return numbers.reduce(function(sum, number) {
+      sum.real += number.real; 
+      sum.imaginary += number.imaginary; 
+      return sum;
+    }, {real: 0, imaginary: 0}); 
   }
 
   const getProduct = function() {
@@ -22,7 +28,8 @@ const complexNumber = function(numbers) {
     const imaginary = real1 * imaginary2 + real2 * imaginary1; 
     return {real, imaginary}; 
   }
-  return {getRealPart, getImaginaryPart, getProduct, getSum}
-}
 
+  return {getProduct, getSum};
+}
+exports.complexNumberOperator = complexNumberOperator
 exports.complexNumber = complexNumber;
