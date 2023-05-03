@@ -20,13 +20,15 @@ const complexNumberOperator = function(numbers) {
   }
 
   const getProduct = function() {
-    const real1 = numbers[0].real; 
-    const real2 = numbers[1].real; 
-    const imaginary1 = numbers[0].imaginary; 
-    const imaginary2 = numbers[1].imaginary; 
-    const real = (real1 * real2) - (imaginary1 * imaginary2); 
-    const imaginary = real1 * imaginary2 + real2 * imaginary1; 
-    return {real, imaginary}; 
+    const [number1, number2] = numbers; 
+    const {real: real1, imaginary: imaginary1} = number1; 
+    const {real: real2, imaginary: imaginary2} = number2; 
+    const product = {
+      real: (real1 * real2) - (imaginary1 * imaginary2), 
+      imaginary: (real1 * imaginary2) + (real2 * imaginary1) 
+    }
+
+    return product;  
   }
 
   return {getProduct, getSum};
