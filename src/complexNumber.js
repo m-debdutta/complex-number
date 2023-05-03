@@ -1,37 +1,42 @@
-const complexNumber = function(number) {
+const complexNumber = function(real, imaginary) {
   const getRealPart = function() {
-    return number.real; 
-  }
+    return real; 
+  }; 
 
   const getImaginaryPart = function() {
-    return number.imaginary; 
-  }
+    return imaginary; 
+  }; 
 
-  return {getRealPart, getImaginaryPart}; 
-}
+  const add = function(number) {
+    const sumOfReal = real + number.getRealPart();  
+    const sumOfImaginary = imaginary + number.getImaginaryPart(); 
 
-const complexNumberOperator = function(numbers) {
-  const getSum = function() {
-    return numbers.reduce(function(sum, number) {
-      sum.real += number.real; 
-      sum.imaginary += number.imaginary; 
-      return sum;
-    }, {real: 0, imaginary: 0}); 
-  }
+    return complexNumber(sumOfReal, sumOfImaginary); 
+  }; 
 
-  const getProduct = function() {
-    const [number1, number2] = numbers; 
-    const {real: real1, imaginary: imaginary1} = number1; 
-    const {real: real2, imaginary: imaginary2} = number2; 
-    const product = {
-      real: (real1 * real2) - (imaginary1 * imaginary2), 
-      imaginary: (real1 * imaginary2) + (real2 * imaginary1) 
+  const multiply = function(number) {
+    const a = real; 
+    const b = imaginary;   
+    const c = number.getRealPart(); 
+    const d = number.getImaginaryPart(); 
+
+    const realPart = a * c - b * d; 
+    const imaginaryPart = a * d + b * c; 
+
+    return complexNumber(realPart, imaginaryPart); 
+  }; 
+
+  const display = function() {
+    const sign = imaginary < 0 ? ' - ' : ' + ';
+
+    if(real === 0) {
+      return imaginary + 'i'; 
     }
 
-    return product;  
-  }
+    return real + sign + Math.abs(imaginary) + 'i'; 
+  }; 
 
-  return {getProduct, getSum};
-}
-exports.complexNumberOperator = complexNumberOperator
+  return {getRealPart, getImaginaryPart, multiply, add, display};
+}; 
+
 exports.complexNumber = complexNumber;
