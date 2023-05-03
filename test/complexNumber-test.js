@@ -6,11 +6,11 @@ const {complexNumber} = require('../src/complexNumber.js');
 describe('Testing to get real and imaginary part of a complex numbers', function() {
   const complex = complexNumber(2,3); 
   it('should give the real part', function() { 
-    strictEqual(complex.getRealPart(), 2); 
+    strictEqual(complex.realPart(), 2); 
   }); 
 
   it('should give the imaginary part', function() {
-    strictEqual(complex.getImaginaryPart(), 3); 
+    strictEqual(complex.imaginaryPart(), 3); 
   }); 
 }); 
 

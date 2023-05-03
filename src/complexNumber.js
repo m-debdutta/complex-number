@@ -1,15 +1,15 @@
 const complexNumber = function(real, imaginary) {
-  const getRealPart = function() {
+  const realPart = function() {
     return real; 
   }; 
 
-  const getImaginaryPart = function() {
+  const imaginaryPart = function() {
     return imaginary; 
   }; 
 
   const add = function(number) {
-    const sumOfReal = real + number.getRealPart();  
-    const sumOfImaginary = imaginary + number.getImaginaryPart(); 
+    const sumOfReal = real + number.realPart();  
+    const sumOfImaginary = imaginary + number.imaginaryPart(); 
 
     return complexNumber(sumOfReal, sumOfImaginary); 
   }; 
@@ -17,8 +17,8 @@ const complexNumber = function(real, imaginary) {
   const multiply = function(number) {
     const a = real; 
     const b = imaginary;   
-    const c = number.getRealPart(); 
-    const d = number.getImaginaryPart(); 
+    const c = number.realPart(); 
+    const d = number.imaginaryPart(); 
 
     const realPart = a * c - b * d; 
     const imaginaryPart = a * d + b * c; 
@@ -36,7 +36,7 @@ const complexNumber = function(real, imaginary) {
     return real + sign + Math.abs(imaginary) + 'i'; 
   }; 
 
-  return {getRealPart, getImaginaryPart, multiply, add, display};
+  return {realPart, imaginaryPart, multiply, add, display};
 }; 
 
 exports.complexNumber = complexNumber;
