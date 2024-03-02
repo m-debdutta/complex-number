@@ -1,17 +1,58 @@
-const complexNumber = function(real, imaginary) {
-  const realPart = function() {
+const realNumber = function(real) {
+
+  const value = function() {
     return real; 
   }; 
 
+  const toString = function() {
+    return real.toString(); 
+  }; 
+
+  const addReal = function(otherReal) {
+    return realNumber(real + otherReal.value()); 
+  }; 
+
+  const multiply = function(otherReal) {
+    return realNumber(real * otherReal.value()); 
+  }; 
+
+  return {addReal, value, multiply, toString}; 
+}; 
+
+const imaginaryNumber = function(imaginary) {
+  const value = function() {
+    return imaginary;
+  };
+
+  const toString = function() {
+    return `${imaginary}i`;
+  };
+
+  const addImaginary = function(otherImaginary) {
+    return imaginaryNumber(imaginary + otherImaginary.value());
+  };
+
+  const multiplyImaginary = function(otherImaginary) {
+    return realNumber(-imaginary * otherImaginary.value());
+  };
+
+  return {value, toString, addImaginary, multiplyImaginary};
+};
+
+const complexNumber = function(real, imaginary) {
+  const realPart = function() {
+    return realNumber(real.value()); 
+  }; 
+
   const imaginaryPart = function() {
-    return imaginary; 
+    return imaginaryNumber(imaginary.value()); 
   }; 
 
   const add = function(number) {
-    const sumOfReal = real + number.realPart();  
-    const sumOfImaginary = imaginary + number.imaginaryPart(); 
+    const sumOfReal = real.add(number.real.value());  
+    const sumOfImaginary = imaginary.add(number.imaginary.value()); 
 
-    return complexNumber(sumOfReal, sumOfImaginary); 
+    return complexNumber(realNumber(sumOfReal), imaginaryNumber(sumOfImaginary)); 
   }; 
 
   const multiply = function(number) {
@@ -26,17 +67,11 @@ const complexNumber = function(real, imaginary) {
     return complexNumber(realPart, imaginaryPart); 
   }; 
 
-  const display = function() {
-    const sign = imaginary < 0 ? ' - ' : ' + ';
+  const toString = function() {
+    return real.toString() ' + ' imaginary.toString(); 
+  }
 
-    if(real === 0) {
-      return imaginary + 'i'; 
-    }
-
-    return real + sign + Math.abs(imaginary) + 'i'; 
-  }; 
-
-  return {realPart, imaginaryPart, multiply, add, display};
+  return {realPart, imaginaryPart, multiply, add, toString};
 }; 
 
 exports.complexNumber = complexNumber;
